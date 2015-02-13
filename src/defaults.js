@@ -4,12 +4,17 @@ define(function() {
             caption: "Codebox",
             items: [
                 {
-                    caption: "Welcome",
-                    command: "application.welcome"
+                    caption: "Settings",
+                    command: "settings.open"
                 },
+                { type: "separator" },
                 {
                     caption: "About",
                     command: "application.about"
+                },
+                {
+                    caption: "Welcome",
+                    command: "application.welcome"
                 },
                 {
                     caption: "Releases Notes",
@@ -24,6 +29,7 @@ define(function() {
                     caption: "New File",
                     command: "file.open"
                 },
+                { type: "separator" },
                 {
                     caption: "Save",
                     command: "editor.save"
@@ -37,6 +43,10 @@ define(function() {
         {
             caption: "View",
             items: [
+                {
+                    caption: "Toggle Status Bar",
+                    command: "view.statusbar.toggle"
+                },
                 {
                     caption: "Toggle Menu Bar",
                     command: "view.menubar.toggle"

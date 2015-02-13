@@ -37,6 +37,7 @@ define([
         },
 
         render: function() {
+            this.$el.attr("class", "menuitem type-"+this.model.get("type"));
             this.$caption.text(this.model.get("caption"));
 
             return this.ready();

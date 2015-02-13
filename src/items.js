@@ -5,6 +5,7 @@ define(function() {
 
     var MenuItem = hr.Model.extend({
         defaults: {
+            type: "entry",
             caption: "",
             command: "",
             items: [],
