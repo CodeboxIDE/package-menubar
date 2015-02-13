@@ -43,13 +43,14 @@ define([
         },
 
         click: function(e) {
-            console.log("open menu item", this.model.get("caption"), this.model.items.size());
             if (this.model.items.size() > 0) {
                 e.stopPropagation();
 
                 this.prepareMenu();
                 this.bar.closeAllMenus();
                 this.$el.toggleClass("active", true);
+            } else {
+                this.model.execute();
             }
         },
 
