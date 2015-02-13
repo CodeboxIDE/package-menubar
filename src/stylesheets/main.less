@@ -6,14 +6,52 @@
     top: 0px;
     right: 0px;
     left: 0px;
+    z-index: 10;
     height: @menubar-height;
 
-    padding: 0px 5px;
+    padding: 0px 0px;
 
     background: @color-0;
     color: @color-3;
 
     line-height: @menubar-height;
+
+
+    .menubar-menuitems {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        .clearfix();
+
+        .menuitem {
+            float: left;
+            padding: 0px 6px;
+            position: relative;
+
+            > .menubar-menuitems {
+                position: absolute;
+                top: 100%;
+                left: 0px;
+                background: @color-0;
+                display: none;
+
+                .menuitem {
+                    float: none;
+                    min-width: 200px;
+                }
+            }
+
+            &.active {
+                > .caption {
+                    color: @color-5;
+                }
+
+                > .menubar-menuitems {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 .main-application {
@@ -21,7 +59,7 @@
         top: @menubar-height;
     }
 
-    &.hide-hidebar {
+    &.hide-menubar {
         > .main-grid {
             top: 0px;
         }
