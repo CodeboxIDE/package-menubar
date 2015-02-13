@@ -17,27 +17,33 @@
     line-height: @menubar-height;
 
 
-    .menubar-menuitems {
+    .menuitems {
         list-style: none;
         margin: 0px;
         padding: 0px;
-        .clearfix();
 
         .menuitem {
-            float: left;
-            padding: 0px 6px;
+            min-width: 200px;
             position: relative;
 
-            > .menubar-menuitems {
+            > .caption {
+                display: block;
+                cursor: default;
+                padding: 4px 6px;
+                line-height: 1;
+                border: 1px solid transparent;
+            }
+
+            > .menuitems {
                 position: absolute;
                 top: 100%;
                 left: 0px;
-                background: @color-0;
+                background: @color-1;
+                border: 1px solid @color-0;
                 display: none;
 
                 .menuitem {
                     float: none;
-                    min-width: 200px;
                 }
             }
 
@@ -46,8 +52,30 @@
                     color: @color-5;
                 }
 
-                > .menubar-menuitems {
+                > .menuitems {
                     display: block;
+                }
+            }
+        }
+    }
+
+    > .menuitems {
+        .clearfix();
+
+        > .menuitem {
+            float: left;
+            min-width: 0px;
+
+            &.active {
+                > .caption {
+                    border-color: @color-0;
+                    background: @color-1;
+                    border-bottom-color: transparent;
+                }
+
+                >.menuitems {
+                    margin-top: -1px;
+                    border-top-color: transparent;
                 }
             }
         }

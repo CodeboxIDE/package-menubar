@@ -59,7 +59,7 @@ define([
     });
 
     var MenuList = hr.List.extend({
-        className: "menubar-menuitems",
+        className: "menuitems",
 
         Collection: MenuItems,
         Item: MenuItem,
