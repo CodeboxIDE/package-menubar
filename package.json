@@ -1,0 +1,9 @@
+{
+    "name": "menubar",
+    "version": "0.0.0",
+    "description": "Menubar for Codebox",
+    "main": "src/index",
+    "engines": {
+        "codebox": ">=1.0.0"
+    }
+}

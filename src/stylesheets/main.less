@@ -1,0 +1,33 @@
+@menubar-height: 24px;
+
+
+.component-menubar {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: @menubar-height;
+
+    padding: 0px 5px;
+
+    background: @color-0;
+    color: @color-3;
+
+    line-height: @menubar-height;
+}
+
+.main-application {
+    > .main-grid {
+        top: @menubar-height;
+    }
+
+    &.hide-hidebar {
+        > .main-grid {
+            top: 0px;
+        }
+
+        .component-menubar {
+            display: none;
+        }
+    }
+}
