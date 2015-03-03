@@ -10,15 +10,17 @@ define([
     var MenuItem = hr.List.Item.extend({
         className: "menuitem",
         events: {
-            "click  >.caption": "click"
+            "click  >.caption": "onClick",
+            "mouseenter": "onMouseenter"
         },
 
         initialize: function() {
             MenuItem.__super__.initialize.apply(this, arguments);
 
+            this.level = this.parent.level;
             this.bar = this.parent.bar;
             this.menu = null;
-            this.$caption = $("<span>", { 'class': "caption"});
+            this.$caption = $("<span>", { 'class': "caption level-"+this.level});
             this.$caption.appendTo(this.$el);
 
             this.listenTo(this.bar, "close:menu", function() {
@@ -31,32 +33,42 @@ define([
 
             this.menu = new MenuList({
                 collection: this.model.items,
-                bar: this.bar
+                bar: this.bar,
+                level: this.level+1
             }, this);
             this.menu.appendTo(this);
         },
 
         render: function() {
-            this.$el.attr("class", "menuitem type-"+this.model.get("type"));
+            this.$el.attr("class", "menuitem");
             this.$caption.text(this.model.get("caption"));
 
             return this.ready();
         },
 
-        click: function(e) {
+        close: function(e) {
+            this.$el.toggleClass("active", false);
+        },
+
+        onClick: function(e) {
             if (this.model.items.size() > 0) {
                 e.stopPropagation();
 
-                this.prepareMenu();
-                this.bar.closeAllMenus();
-                this.$el.toggleClass("active", true);
+                if (this.level == 0) {
+                    this.prepareMenu();
+                    this.bar.closeAllMenus();
+                    this.$el.toggleClass("active", true);
+                }
             } else {
+                this.bar.closeAllMenus();
                 this.model.execute();
             }
         },
 
-        close: function(e) {
-            this.$el.toggleClass("active", false);
+        onMouseenter: function(e) {
+            if (this.model.items.size() > 0 && this.level > 0) {
+                this.prepareMenu();
+            }
         }
     });
 
@@ -68,6 +80,7 @@ define([
 
         initialize: function() {
             this.bar = this.options.bar;
+            this.level = this.options.level;
             MenuList.__super__.initialize.apply(this, arguments);
         },
     });
@@ -83,7 +96,8 @@ define([
 
             // Create list of all messages in status bar
             this.items = new MenuList({
-                bar: this
+                bar: this,
+                level: 0
             }, this);
             this.items.appendTo(this);
 

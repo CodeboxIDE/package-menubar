@@ -49,8 +49,8 @@
 
             > .menuitems {
                 position: absolute;
-                top: 100%;
-                left: 0px;
+                top: 0%;
+                left: 100%;
                 background: @color-1;
                 border: 1px solid @color-0;
                 display: none;
@@ -87,8 +87,20 @@
                 }
 
                 >.menuitems {
+                    top: 100%;
+                    left: 0%;
                     margin-top: -1px;
                     border-top-color: transparent;
+                }
+            }
+
+            .menuitem:hover {
+                > .caption {
+                    color: @color-5;
+                }
+
+                > .menuitems {
+                    display: block;
                 }
             }
         }
