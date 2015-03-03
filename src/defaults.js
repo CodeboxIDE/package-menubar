@@ -1,6 +1,7 @@
 define(function() {
     return [
         {
+            id: "application",
             caption: "Codebox",
             items: [
                 {
@@ -23,6 +24,7 @@ define(function() {
             ]
         },
         {
+            id: "file",
             caption: "File",
             items: [
                 {
@@ -41,6 +43,7 @@ define(function() {
             ]
         },
         {
+            id: "view",
             caption: "View",
             items: [
                 {
@@ -54,6 +57,17 @@ define(function() {
             ]
         },
         {
+            id: "tools",
+            caption: "Tools",
+            items: [
+                {
+                    caption: "Command Palette...",
+                    command: "palette.open"
+                }
+            ]
+        },
+        {
+            id: "help",
             caption: "Help",
             items: [
                 {

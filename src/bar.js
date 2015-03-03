@@ -106,6 +106,27 @@ define([
         // When settings changed
         onSettingsChange: function() {
             codebox.app.$el.toggleClass("hide-menubar", !settings.data.get("visible"));
+        },
+
+        // Create a new menu
+        createMenu: function(path, newItem, options) {
+            if (!_.isString(path)) {
+                options = newItem;
+                newItem = path;
+                path = "";
+            }
+
+            options = _.defaults(options || {}, {
+
+            });
+
+            var items = this.items.collection;
+            _.each(path.split("/"), function(part) {
+                var i = items.get(part);
+                items = i? i.items : items;
+            });
+
+            items.add(newItem);
         }
     });
 
