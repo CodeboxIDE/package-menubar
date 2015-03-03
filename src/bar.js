@@ -20,7 +20,7 @@ define([
             this.level = this.parent.level;
             this.bar = this.parent.bar;
             this.menu = null;
-            this.$caption = $("<span>", { 'class': "caption level-"+this.level});
+            this.$caption = $("<span>", { 'class': "caption"});
             this.$caption.appendTo(this.$el);
 
             this.listenTo(this.bar, "close:menu", function() {
@@ -40,7 +40,10 @@ define([
         },
 
         render: function() {
-            this.$el.attr("class", "menuitem");
+            var type = this.model.get("type");
+            if (this.model.items.size() > 0) type = "menu";
+
+            this.$el.attr("class", "menuitem type-"+type);
             this.$caption.text(this.model.get("caption"));
 
             return this.ready();
