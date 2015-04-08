@@ -2,10 +2,10 @@ var settings = require("./settings");
 var defaultMenus = require("./defaults");
 var MenuItems = require("./items");
 
+var $ = codebox.require("jquery");
 var ListView = codebox.require("hr.list");
 var View = codebox.require("hr.view");
-var $ = codebox.require("hr/dom");
-var _ = codebox.require("hr/utils");
+var _ = codebox.require("hr.utils");
 
 var MenuItem = ListView.Item.extend({
     className: "menuitem",
