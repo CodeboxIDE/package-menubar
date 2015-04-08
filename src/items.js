@@ -1,38 +1,37 @@
-define(function() {
-    var hr = codebox.require("hr/hr");
-    var _ = codebox.require("hr/utils");
-    var commands = codebox.require("core/commands");
+var Model = codebox.require("hr.model");
+var Collection = codebox.require("hr.collection");
+var _ = codebox.require("hr.utils");
+var commands = codebox.require("core/commands");
 
-    var MenuItem = hr.Model.extend({
-        defaults: {
-            type: "entry",
-            caption: "",
-            command: "",
-            items: [],
-            args: {}
-        },
+var MenuItem = Model.extend({
+    defaults: {
+        type: "entry",
+        caption: "",
+        command: "",
+        items: [],
+        args: {}
+    },
 
-        // Constructor
-        initialize: function() {
-            MenuItem.__super__.initialize.apply(this, arguments);
+    // Constructor
+    initialize: function() {
+        MenuItem.__super__.initialize.apply(this, arguments);
 
-            this.items = new MenuItems();
+        this.items = new MenuItems();
 
-            this.listenTo(this, "change:items", function() {
-                this.items.reset(this.get("items"));
-            });
+        this.listenTo(this, "change:items", function() {
             this.items.reset(this.get("items"));
-        },
+        });
+        this.items.reset(this.get("items"));
+    },
 
-        // Execute the command associated with the entry
-        execute: function() {
-            commands.run(this.get("command"), this.get("args"))
-        }
-    });
-
-    var MenuItems = hr.Collection.extend({
-        model: MenuItem
-    });
-
-    return MenuItems;
+    // Execute the command associated with the entry
+    execute: function() {
+        commands.run(this.get("command"), this.get("args"))
+    }
 });
+
+var MenuItems = Collection.extend({
+    model: MenuItem
+});
+
+module.exports = MenuItems;
