@@ -9,7 +9,8 @@ var MenuItem = Model.extend({
         caption: "",
         command: "",
         items: [],
-        args: {}
+        args: {},
+        position: 0
     },
 
     // Constructor
@@ -31,7 +32,8 @@ var MenuItem = Model.extend({
 });
 
 var MenuItems = Collection.extend({
-    model: MenuItem
+    model: MenuItem,
+    comparator: "position"
 });
 
 module.exports = MenuItems;

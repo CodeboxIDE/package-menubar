@@ -68,6 +68,7 @@ module.exports = [
     {
         id: "help",
         caption: "Help",
+        position: 100,
         items: [
             {
                 caption: "Documentation",
