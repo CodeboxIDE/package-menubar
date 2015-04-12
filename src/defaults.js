@@ -46,10 +46,6 @@ module.exports = [
         caption: "View",
         items: [
             {
-                caption: "Toggle Status Bar",
-                command: "view.statusbar.toggle"
-            },
-            {
                 caption: "Toggle Menu Bar",
                 command: "view.menubar.toggle"
             }
