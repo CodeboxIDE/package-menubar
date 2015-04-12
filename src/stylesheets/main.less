@@ -1,5 +1,6 @@
-@menubar-height: 24px;
-
+@menubar-height: 30px;
+@menubar-inner-height: 24px;
+@menubar-margin-bottom: 3px;
 
 .component-menubar {
     position: fixed;
@@ -11,10 +12,11 @@
 
     padding: 0px 0px;
 
-    background: @color-0-0;
+    background: @color-0-1;
     color: @color-3;
 
-    line-height: @menubar-height;
+    line-height: @menubar-inner-height;
+    padding: (@menubar-height - @menubar-inner-height)/2;
 
 
     .menuitems {
@@ -41,22 +43,26 @@
                 padding: 4px 6px;
                 line-height: 1;
                 border: 1px solid transparent;
-
-                &:hover {
-                    background: rgba(0, 0, 0, 0.2);
-                }
             }
 
             > .menuitems {
                 position: absolute;
                 top: 0%;
                 left: 100%;
-                background: @color-0-1;
-                border: 1px solid @color-0-0;
+                background: @menu-background;
+                border: 1px solid @menu-border-color;
+                color: @menu-color;
                 display: none;
 
                 .menuitem {
                     float: none;
+                }
+            }
+
+            &:hover {
+                > .caption {
+                    background: @menu-item-active-background;
+                    color: @menu-item-active-color;
                 }
             }
 
@@ -79,18 +85,25 @@
             float: left;
             min-width: 0px;
 
+            > .caption:hover {
+                background: none;
+                color: @color-7;
+            }
+
             &.active {
                 > .caption {
-                    border-color: @color-0-0;
-                    background: @color-0-1;
+                    border-color: @menu-border-color;
+                    background: @menu-background;
+                    color: @menu-color;
                     border-bottom-color: transparent;
+                    z-index: 2;
+                    position: relative;
                 }
 
                 >.menuitems {
                     top: 100%;
                     left: 0%;
                     margin-top: -1px;
-                    border-top-color: transparent;
                 }
             }
 
@@ -106,17 +119,13 @@
                         position: absolute;
                         pointer-events: none;
                         border-color: rgba(0, 0, 0, 0);
-                        border-left-color: @color-0-0;
+                        border-left-color: @menu-color;
                         border-width: 6px;
                         margin-top: -6px;
                     }
                 }
 
                 &:hover {
-                    > .caption {
-                        color: @color-5;
-                    }
-
                     > .menuitems {
                         display: block;
                     }
@@ -128,7 +137,7 @@
 
 .main-application {
     > .main-grid {
-        top: @menubar-height;
+        top: @menubar-height + @menubar-margin-bottom;
     }
 
     &.hide-menubar {
