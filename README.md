@@ -36,7 +36,7 @@ codebox.menubar.addMenu({
 
 Pass a string as first argument to `codebox.menubar.addMenu` to extend a menu already existant:
 
-```
+```js
 codebox.menubar.addMenu("view", {
     caption: "Toggle My View",
     command: "myview.toggle"
