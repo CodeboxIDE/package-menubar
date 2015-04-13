@@ -6,6 +6,7 @@ var $ = codebox.require("jquery");
 var ListView = codebox.require("hr.list");
 var View = codebox.require("hr.view");
 var _ = codebox.require("hr.utils");
+var user = codebox.require("core/user");
 
 var MenuItem = ListView.Item.extend({
     className: "menuitem",
@@ -108,6 +109,14 @@ var MenuBar = View.extend({
         this.listenTo(settings.data, "change", this.onSettingsChange);
         this.onSettingsChange();
 
+        // Bind user changes
+        this.$user = $("<span>", {
+            'class': "menubar-user"
+        });
+        this.$user.prependTo(this.$el);
+        this.listenTo(user, "set", this.onUserChange);
+        this.onUserChange();
+
         // Show defaults menu
         this.items.collection.reset(defaultMenus);
 
@@ -123,6 +132,11 @@ var MenuBar = View.extend({
     // When settings changed
     onSettingsChange: function() {
         codebox.app.$el.toggleClass("hide-menubar", !settings.data.get("visible"));
+    },
+
+    // When user changed
+    onUserChange: function() {
+        this.$user.text(user.get("email"));
     },
 
     // Create a new menu
