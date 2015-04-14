@@ -48,7 +48,7 @@
                 border: 1px solid transparent;
             }
 
-            > .menuitems {
+            > .menuitem-sub {
                 position: absolute;
                 top: 0%;
                 left: 100%;
@@ -57,8 +57,10 @@
                 color: @menu-color;
                 display: none;
 
-                .menuitem {
-                    float: none;
+                > .menuitems {
+                    .menuitem {
+                        float: none;
+                    }
                 }
             }
 
@@ -74,8 +76,10 @@
                     color: @color-5;
                 }
 
-                > .menuitems {
+                > .menuitem-sub {
                     display: block;
+                    overflow-y: auto;
+                    max-height: 400px;
                 }
             }
 
@@ -116,10 +120,12 @@
                     position: relative;
                 }
 
-                >.menuitems {
+                >.menuitem-sub {
                     top: 100%;
                     left: 0%;
                     margin-top: -1px;
+                    overflow: visible;
+                    max-height: none;
                 }
             }
 
@@ -142,8 +148,10 @@
                 }
 
                 &:hover {
-                    > .menuitems {
+                    > .menuitem-sub {
                         display: block;
+                        overflow-y: auto;
+                        max-height: 400px;
                     }
                 }
             }

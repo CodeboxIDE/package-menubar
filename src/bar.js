@@ -32,12 +32,17 @@ var MenuItem = ListView.Item.extend({
     prepareMenu: function() {
         if (this.menu) return;
 
+        this.$subMenu = $("<div>", {
+            'class': "menuitem-sub"
+        });
+        this.$subMenu.appendTo(this.$el);
+
         this.menu = new MenuList({
             collection: this.model.items,
             bar: this.bar,
             level: this.level+1
         }, this);
-        this.menu.appendTo(this);
+        this.menu.appendTo(this.$subMenu);
     },
 
     render: function() {
