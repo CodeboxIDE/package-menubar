@@ -35,20 +35,20 @@ var MenuItem = Model.extend({
 
     // Check visibility
     checkState: function() {
+        var isEnabled = true;
+
         if (this.get("command")) {
-            var cmd = commands.get(this.get("command"));
-            var isEnabled = (
+            var cmd = commands.resolve(this.get("command"));
+            isEnabled = (
                 // Command exits
-                cmd &&
+                cmd != null &&
 
                 // Command is runnable
                 cmd.isRunnable()
             );
-
-            this.set("enabled", isEnabled);
         }
 
-        return this.get("enabled");
+        return isEnabled && this.get("enabled");
     }
 });
 
