@@ -10,7 +10,8 @@ var MenuItem = Model.extend({
         command: "",
         items: [],
         args: {},
-        position: 0
+        position: 0,
+        enabled: true
     },
 
     // Constructor
@@ -23,11 +24,31 @@ var MenuItem = Model.extend({
             this.items.reset(this.get("items"));
         });
         this.items.reset(this.get("items"));
+
+        this.listenTo(commands, "add remove reset change:enabled change:context", this.checkState);
     },
 
     // Execute the command associated with the entry
     execute: function() {
         commands.run(this.get("command"), this.get("args"))
+    },
+
+    // Check visibility
+    checkState: function() {
+        if (this.get("command")) {
+            var cmd = commands.get(this.get("command"));
+            var isEnabled = (
+                // Command exits
+                cmd &&
+
+                // Command is runnable
+                cmd.isRunnable()
+            );
+
+            this.set("enabled", isEnabled);
+        }
+
+        return this.get("enabled");
     }
 });
 

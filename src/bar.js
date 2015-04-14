@@ -45,6 +45,7 @@ var MenuItem = ListView.Item.extend({
         if (this.model.items.size() > 0) type = "menu";
 
         this.$el.attr("class", "menuitem type-"+type);
+        this.$el.toggleClass("disabled", !this.model.checkState());
         this.$caption.text(this.model.get("caption"));
 
         return this.ready();
@@ -55,6 +56,8 @@ var MenuItem = ListView.Item.extend({
     },
 
     onClick: function(e) {
+        if (!this.model.checkState()) return;
+
         if (this.model.items.size() > 0) {
             e.stopPropagation();
 

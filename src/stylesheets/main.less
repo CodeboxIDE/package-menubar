@@ -78,6 +78,19 @@
                     display: block;
                 }
             }
+
+            &.disabled {
+                > .caption {
+                    opacity: 0.5;
+                }
+
+                &:hover {
+                    > .caption {
+                        background: transparent;
+                        color: inherit;
+                    }
+                }
+            }
         }
     }
 
