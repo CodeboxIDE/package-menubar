@@ -25,7 +25,7 @@ var MenuItem = Model.extend({
         });
         this.items.reset(this.get("items"));
 
-        this.listenTo(commands, "add remove reset change:enabled change:context", this.checkState);
+        this.listenTo(commands, "add remove reset change:enabled change:context context", this.checkState);
     },
 
     // Execute the command associated with the entry
