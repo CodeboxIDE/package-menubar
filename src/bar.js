@@ -21,8 +21,13 @@ var MenuItem = ListView.Item.extend({
         this.level = this.parent.level;
         this.bar = this.parent.bar;
         this.menu = null;
+
         this.$caption = $("<span>", { 'class': "caption"});
+        this.$shortcut = $("<span>", { 'class': "shortcut" });
+
+        this.$shortcut.appendTo(this.$el);
         this.$caption.appendTo(this.$el);
+
 
         this.listenTo(this.bar, "close:menu", function() {
             this.close();
@@ -52,6 +57,7 @@ var MenuItem = ListView.Item.extend({
         this.$el.attr("class", "menuitem type-"+type);
         this.$el.toggleClass("disabled", !this.model.checkState());
         this.$caption.text(this.model.get("caption"));
+        this.$shortcut.html(this.model.shortcutText());
 
         return this.ready();
     },

@@ -28,7 +28,7 @@
         padding: 0px;
 
         .menuitem {
-            min-width: 200px;
+            min-width: 220px;
             position: relative;
 
             &.type-separator {
@@ -38,6 +38,13 @@
                 > .caption {
                     display: none;
                 }
+            }
+
+            > .shortcut {
+                float: right;
+                float: right;
+                padding-right: 5px;
+                font-size: 12px;
             }
 
             > .caption {
@@ -67,6 +74,10 @@
             &:hover {
                 > .caption {
                     background: @menu-item-active-background;
+                    color: @menu-item-active-color;
+                }
+
+                > .shortcut {
                     color: @menu-item-active-color;
                 }
             }

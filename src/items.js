@@ -2,6 +2,7 @@ var Model = codebox.require("hr.model");
 var Collection = codebox.require("hr.collection");
 var _ = codebox.require("hr.utils");
 var commands = codebox.require("core/commands");
+var dialogs = codebox.require("utils/dialogs");
 
 var MenuItem = Model.extend({
     defaults: {
@@ -11,7 +12,8 @@ var MenuItem = Model.extend({
         items: [],
         args: {},
         position: 0,
-        enabled: true
+        enabled: true,
+        shortcut: ""
     },
 
     // Constructor
@@ -30,7 +32,8 @@ var MenuItem = Model.extend({
 
     // Execute the command associated with the entry
     execute: function() {
-        commands.run(this.get("command"), this.get("args"))
+        return commands.run(this.get("command"), this.get("args"))
+        .fail(dialogs.error);
     },
 
     // Check visibility
@@ -49,6 +52,18 @@ var MenuItem = Model.extend({
         }
 
         return isEnabled && this.get("enabled");
+    },
+
+    // Return the shortcut text
+    shortcutText: function() {
+        var def = this.get("shortcut") || "";
+
+        if (!def && this.get("command")) {
+            var cmd = commands.resolve(this.get("command"));
+            def = cmd? cmd.shortcutText() : def;
+        }
+
+        return def;
     }
 });
 
