@@ -82,7 +82,7 @@
                 }
             }
 
-            &.active {
+            /*&.active {
                 > .caption {
                     color: @color-5;
                 }
@@ -92,7 +92,7 @@
                     overflow-y: auto;
                     max-height: 400px;
                 }
-            }
+            }*/
 
             &.disabled {
                 > .caption {
@@ -119,11 +119,11 @@
             > .caption {
                 padding-left: 8px;
                 padding-right: 8px;
+            }
 
-                &:hover {
-                    background: none;
-                    color: @color-7;
-                }
+            &:hover > .caption {
+                background: none;
+                color: @color-7;
             }
 
             &.active {
@@ -137,6 +137,9 @@
                 }
 
                 >.menuitem-sub {
+                    display: block;
+                    overflow-y: auto;
+                    max-height: 400px;
                     top: 100%;
                     left: 0%;
                     margin-top: -1px;
