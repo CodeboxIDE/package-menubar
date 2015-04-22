@@ -131,6 +131,13 @@ var MenuBar = View.extend({
         this.listenTo(user, "set", this.onUserChange);
         this.onUserChange();
 
+        // Workspace name
+        this.$workspace = $("<span>", {
+            'class': "menubar-workspace",
+            'text': codebox.workspace.get('title')
+        });
+        this.$workspace.prependTo(this.$el);
+
         // Show defaults menu
         this.items.collection.reset(defaultMenus);
 
